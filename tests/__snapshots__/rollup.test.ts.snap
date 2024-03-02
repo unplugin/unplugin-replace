@@ -1,0 +1,12 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`rollup 1`] = `
+"import 'node:process';
+
+const platform = "darwin";
+
+console.log('hello "darwin"', platform);
+
+export { platform };
+"
+`;

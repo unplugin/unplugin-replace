@@ -1,0 +1,11 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`rollup 1`] = `
+"// tests/fixtures/main.js
+var platform = "darwin";
+console.log('hello "darwin"');
+export {
+  platform
+};
+"
+`;
