@@ -67,7 +67,7 @@ module.exports = {
 
 ## Usage
 
-See [@rollup/plugin-replace](https://www.npmjs.com/package/@rollup/plugin-replace).
+Refer to [@rollup/plugin-replace](https://github.com/rollup/plugins/tree/master/packages/replace#options).
 
 ## Sponsors
 
