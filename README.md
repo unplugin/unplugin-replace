@@ -2,7 +2,7 @@
 
 [![Unit Test](https://github.com/unplugin/unplugin-replace/actions/workflows/unit-test.yml/badge.svg)](https://github.com/unplugin/unplugin-replace/actions/workflows/unit-test.yml)
 
-🍣 A universal bundler plugin which replaces targeted strings in files while bundling, based on [@rollup/plugin-replace](https://www.npmjs.com/package/@rollup/plugin-replace).
+🍣 A universal bundler plugin which replaces targeted strings in files, based on [@rollup/plugin-replace](https://www.npmjs.com/package/@rollup/plugin-replace).
 
 ## Installation
 
