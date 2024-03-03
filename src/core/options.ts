@@ -14,6 +14,9 @@ interface BaseOptions {
   exclude?: FilterPattern
   /**
    * If false, skips source map generation. This will improve performance.
+   *
+   * For Vite, this option will be enabled on build mode
+   * and respect `build.sourcemap`.
    * @default true
    */
   sourceMap?: boolean
