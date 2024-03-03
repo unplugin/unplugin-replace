@@ -34,19 +34,17 @@ export default createUnplugin<Options | undefined, false>((rawOptions = {}) => {
     buildStart() {
       if (![true, false].includes(preventAssignment)) {
         console.warn({
-          message:
-            "unplugin-replace: 'preventAssignment' currently defaults to false. It is recommended to set this option to `true`, as the next major version will default this option to `true`.",
+          message: `${name}: 'preventAssignment' currently defaults to false. It is recommended to set this option to \`true\`, as the next major version will default this option to \`true\`.`,
         })
       }
     },
 
     transformInclude(id) {
+      if (keys.length === 0) return false
       return filter(id)
     },
 
     transform(code, id) {
-      if (keys.length === 0) return null
-      if (!filter(id)) return null
       return executeReplacement(code, id)
     },
 
