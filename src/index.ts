@@ -4,36 +4,31 @@ import MagicString from 'magic-string'
 import { type Options, type ReplaceItem, resolveOptions } from './core/options'
 
 export default createUnplugin<Options | undefined, false>((rawOptions = {}) => {
-  let {
+  const options = resolveOptions(rawOptions)
+  const {
     include,
     exclude,
-    preventAssignment,
-    objectGuards,
-    sourceMap,
-    delimiters,
-    values,
     enforce,
-  } = resolveOptions(rawOptions)
+    delimiters,
+    objectGuards,
+    preventAssignment,
+  } = options
   const filter = createFilter(include, exclude)
 
-  const stringValues = values.filter(
+  const stringValues = options.values.filter(
     (value): value is ReplaceItem<string> => typeof value.find === 'string',
   )
-  const regexpValues = values.filter(
+  const regexpValues = options.values.filter(
     (value): value is ReplaceItem<RegExp> => value.find instanceof RegExp,
   )
 
   if (objectGuards) expandTypeofReplacements(stringValues)
-  const escapedKeys = stringValues
-    .map(({ find }) => find)
-    .sort(longest)
-    // eslint-disable-next-line unicorn/no-array-callback-reference
-    .map(escape)
-  const lookahead = preventAssignment ? '(?!\\s*(=[^=]|:[^:]))' : ''
-  const pattern = new RegExp(
-    `${delimiters[0]}(${escapedKeys.join('|')})${delimiters[1]}${lookahead}`,
-    'g',
-  )
+  const pattern = buildStringPattern()
+
+  const values = [...regexpValues]
+  if (pattern) {
+    values.unshift({ find: pattern, replacement: null! })
+  }
 
   const name = 'unplugin-replace'
   return {
@@ -49,7 +44,7 @@ export default createUnplugin<Options | undefined, false>((rawOptions = {}) => {
     },
 
     transformInclude(id) {
-      if (escapedKeys.length === 0 && regexpValues.length === 0) return false
+      if (values.length === 0) return false
       return filter(id)
     },
 
@@ -59,7 +54,8 @@ export default createUnplugin<Options | undefined, false>((rawOptions = {}) => {
 
     vite: {
       configResolved(config) {
-        sourceMap = config.command === 'build' ? !!config.build.sourcemap : true
+        options.sourceMap =
+          config.command === 'build' ? !!config.build.sourcemap : true
       },
     },
   }
@@ -71,7 +67,7 @@ export default createUnplugin<Options | undefined, false>((rawOptions = {}) => {
     }
 
     const result: TransformResult = { code: magicString.toString() }
-    if (sourceMap) {
+    if (options.sourceMap) {
       result.map = magicString.generateMap({ hires: true })
     }
     return result
@@ -84,10 +80,6 @@ export default createUnplugin<Options | undefined, false>((rawOptions = {}) => {
   ) {
     let has = false
     let match: RegExpExecArray | null
-
-    const values: ReplaceItem<RegExp>[] = [...regexpValues]
-    if (escapedKeys.length > 0)
-      values.push({ find: pattern, replacement: null! })
 
     for (const { find, replacement } of values) {
       while ((match = find.exec(code))) {
@@ -108,6 +100,23 @@ export default createUnplugin<Options | undefined, false>((rawOptions = {}) => {
     }
 
     return has
+  }
+
+  function buildStringPattern(): RegExp | undefined {
+    const escapedKeys = stringValues
+      .map(({ find }) => find)
+      .sort(longest)
+      // eslint-disable-next-line unicorn/no-array-callback-reference
+      .map(escape)
+    const lookahead = preventAssignment ? '(?!\\s*(=[^=]|:[^:]))' : ''
+    const pattern = new RegExp(
+      `${delimiters[0]}(${escapedKeys.join('|')})${delimiters[1]}${lookahead}`,
+      'g',
+    )
+
+    if (escapedKeys.length > 0) {
+      return pattern
+    }
   }
 })
 
