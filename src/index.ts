@@ -1,7 +1,7 @@
 import { type TransformResult, createUnplugin } from 'unplugin'
 import { createFilter } from '@rollup/pluginutils'
 import MagicString from 'magic-string'
-import { type Options, resolveOption } from './core/options'
+import { type Options, type ReplaceItem, resolveOptions } from './core/options'
 
 export default createUnplugin<Options | undefined, false>((rawOptions = {}) => {
   let {
@@ -13,16 +13,25 @@ export default createUnplugin<Options | undefined, false>((rawOptions = {}) => {
     delimiters,
     values,
     enforce,
-  } = resolveOption(rawOptions)
+  } = resolveOptions(rawOptions)
   const filter = createFilter(include, exclude)
 
-  if (objectGuards) expandTypeofReplacements(values)
-  const functionValues = mapToFunctions(values)
-  // eslint-disable-next-line unicorn/no-array-callback-reference
-  const keys = Object.keys(functionValues).sort(longest).map(escape)
+  const stringValues = values.filter(
+    (value): value is ReplaceItem<string> => typeof value.find === 'string',
+  )
+  const regexpValues = values.filter(
+    (value): value is ReplaceItem<RegExp> => value.find instanceof RegExp,
+  )
+
+  if (objectGuards) expandTypeofReplacements(stringValues)
+  const escapedKeys = stringValues
+    .map(({ find }) => find)
+    .sort(longest)
+    // eslint-disable-next-line unicorn/no-array-callback-reference
+    .map(escape)
   const lookahead = preventAssignment ? '(?!\\s*(=[^=]|:[^:]))' : ''
   const pattern = new RegExp(
-    `${delimiters[0]}(${keys.join('|')})${delimiters[1]}${lookahead}`,
+    `${delimiters[0]}(${escapedKeys.join('|')})${delimiters[1]}${lookahead}`,
     'g',
   )
 
@@ -40,7 +49,7 @@ export default createUnplugin<Options | undefined, false>((rawOptions = {}) => {
     },
 
     transformInclude(id) {
-      if (keys.length === 0) return false
+      if (escapedKeys.length === 0 && regexpValues.length === 0) return false
       return filter(id)
     },
 
@@ -73,18 +82,32 @@ export default createUnplugin<Options | undefined, false>((rawOptions = {}) => {
     id: string,
     magicString: MagicString,
   ) {
-    let result = false
-    let match
+    let has = false
+    let match: RegExpExecArray | null
 
-    while ((match = pattern.exec(code))) {
-      result = true
+    const values: ReplaceItem<RegExp>[] = [...regexpValues]
+    if (escapedKeys.length > 0)
+      values.push({ find: pattern, replacement: null! })
 
-      const start = match.index
-      const end = start + match[0].length
-      const replacement = String(functionValues[match[1]](id))
-      magicString.overwrite(start, end, replacement)
+    for (const { find, replacement } of values) {
+      while ((match = find.exec(code))) {
+        has = true
+
+        const start = match.index
+        const end = start + match[0].length
+
+        const finalReplacement =
+          find === pattern
+            ? stringValues.find(({ find }) => find === match![1])!.replacement
+            : replacement
+        const result = String(ensureFunction(finalReplacement)(id, match))
+        magicString.overwrite(start, end, result)
+
+        if (!find.global) break
+      }
     }
-    return result
+
+    return has
   }
 })
 
@@ -93,7 +116,9 @@ function escape(str: string) {
   return str.replace(/[$()*+./?[\\\]^{|}-]/g, '\\$&')
 }
 
-function ensureFunction(functionOrValue: any): () => any {
+function ensureFunction(
+  functionOrValue: any,
+): (id: string, match: RegExpExecArray) => any {
   if (typeof functionOrValue === 'function') return functionOrValue
   return () => functionOrValue
 }
@@ -102,47 +127,51 @@ function longest(a: string, b: string) {
   return b.length - a.length
 }
 
-function mapToFunctions(object: Record<string, any>): Record<string, Function> {
-  return Object.keys(object).reduce((fns, key) => {
-    const functions: Record<string, Function> = Object.assign({}, fns)
-    functions[key] = ensureFunction(object[key])
-    return functions
-  }, {})
-}
-
 const objKeyRegEx =
   /^([$A-Z_a-z\u00A0-\uFFFF][\w$\u00A0-\uFFFF]*)(\.([$A-Z_a-z\u00A0-\uFFFF][\w$\u00A0-\uFFFF]*))+$/
-function expandTypeofReplacements(replacements: Record<string, any>) {
-  Object.keys(replacements).forEach((key) => {
-    const objMatch = key.match(objKeyRegEx)
+function expandTypeofReplacements(values: ReplaceItem<string>[]) {
+  values.forEach(({ find }) => {
+    const objMatch = find.match(objKeyRegEx)
     if (!objMatch) return
     let dotIndex = objMatch[1].length
     let lastIndex = 0
     do {
-      // eslint-disable-next-line no-param-reassign
-      replacements[`typeof ${key.slice(lastIndex, dotIndex)} ===`] =
-        '"object" ==='
-      // eslint-disable-next-line no-param-reassign
-      replacements[`typeof ${key.slice(lastIndex, dotIndex)} !==`] =
-        '"object" !=='
-      // eslint-disable-next-line no-param-reassign
-      replacements[`typeof ${key.slice(lastIndex, dotIndex)}===`] =
-        '"object"==='
-      // eslint-disable-next-line no-param-reassign
-      replacements[`typeof ${key.slice(lastIndex, dotIndex)}!==`] =
-        '"object"!=='
-      // eslint-disable-next-line no-param-reassign
-      replacements[`typeof ${key.slice(lastIndex, dotIndex)} ==`] =
-        '"object" ==='
-      // eslint-disable-next-line no-param-reassign
-      replacements[`typeof ${key.slice(lastIndex, dotIndex)} !=`] =
-        '"object" !=='
-      // eslint-disable-next-line no-param-reassign
-      replacements[`typeof ${key.slice(lastIndex, dotIndex)}==`] = '"object"==='
-      // eslint-disable-next-line no-param-reassign
-      replacements[`typeof ${key.slice(lastIndex, dotIndex)}!=`] = '"object"!=='
+      values.push(
+        {
+          find: `typeof ${find.slice(lastIndex, dotIndex)} ===`,
+          replacement: '"object" ===',
+        },
+        {
+          find: `typeof ${find.slice(lastIndex, dotIndex)} !==`,
+          replacement: '"object" !==',
+        },
+        {
+          find: `typeof ${find.slice(lastIndex, dotIndex)}===`,
+          replacement: '"object"===',
+        },
+        {
+          find: `typeof ${find.slice(lastIndex, dotIndex)}!==`,
+          replacement: '"object"!==',
+        },
+        {
+          find: `typeof ${find.slice(lastIndex, dotIndex)} ==`,
+          replacement: '"object" ===',
+        },
+        {
+          find: `typeof ${find.slice(lastIndex, dotIndex)} !=`,
+          replacement: '"object" !==',
+        },
+        {
+          find: `typeof ${find.slice(lastIndex, dotIndex)}==`,
+          replacement: '"object"===',
+        },
+        {
+          find: `typeof ${find.slice(lastIndex, dotIndex)}!=`,
+          replacement: '"object"!==',
+        },
+      )
       lastIndex = dotIndex + 1
-      dotIndex = key.indexOf('.', lastIndex)
+      dotIndex = find.indexOf('.', lastIndex)
     } while (dotIndex !== -1)
   })
 }

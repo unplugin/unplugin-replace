@@ -1,8 +1,17 @@
 import type { FilterPattern } from '@rollup/pluginutils'
 
-type Replacement = string | ((id: string) => string)
+export type Replacement =
+  | string
+  | ((id: string, match: RegExpExecArray) => string)
+export type ReplaceItem<F = string | RegExp> = {
+  find: F
+  replacement: Replacement
+}
+export type ReplaceMap = {
+  [str: string]: Replacement
+}
 
-interface BaseOptions {
+export interface BaseOptions {
   /**
    * A picomatch pattern, or array of patterns, of files that should be
    * processed by this plugin (if omitted, all files are included by default)
@@ -34,8 +43,7 @@ interface BaseOptions {
   /**
    * You can separate values to replace from other options.
    */
-  values?: { [str: string]: Replacement }
-
+  values?: ReplaceMap | ReplaceItem[]
   enforce?: 'pre' | 'post' | undefined
 }
 
@@ -56,10 +64,11 @@ export type OptionsResolved = Overwrite<
   Required<BaseOptions>,
   {
     enforce: BaseOptions['enforce']
+    values: ReplaceItem[]
   }
 >
 
-export function resolveOption(options: Options): OptionsResolved {
+export function resolveOptions(options: Options): OptionsResolved {
   return {
     include: options.include || [/\.[cm]?[jt]sx?$/],
     exclude: options.exclude || [/node_modules/],
@@ -73,8 +82,12 @@ export function resolveOption(options: Options): OptionsResolved {
 
   function getReplacements() {
     if (options.values) {
-      return Object.assign({}, options.values)
+      if (Array.isArray(options.values)) {
+        return options.values
+      }
+      return normalizeObjectValues(options.values)
     }
+
     const values = Object.assign({}, options)
     delete values.delimiters
     delete values.include
@@ -82,6 +95,13 @@ export function resolveOption(options: Options): OptionsResolved {
     delete values.sourcemap
     delete values.sourceMap
     delete values.objectGuards
-    return values as OptionsResolved['values']
+    return normalizeObjectValues(values as ReplaceMap)
+  }
+
+  function normalizeObjectValues(values: ReplaceMap): ReplaceItem[] {
+    return Object.entries(values).map(([find, replacement]) => ({
+      find,
+      replacement,
+    }))
   }
 }

@@ -17,4 +17,6 @@ test('esbuild', async () => {
     ],
   })
   expect(outputFiles[0].text).toMatchSnapshot()
+  expect(outputFiles[0].text).not.contains('process.platform')
+  expect(outputFiles[0].text).contains('"darwin"')
 })

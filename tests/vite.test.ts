@@ -25,4 +25,6 @@ test('vite', async () => {
     ],
   })) as RollupOutput
   expect(output[0].code).toMatchSnapshot()
+  expect(output[0].code).not.contains('process.platform')
+  expect(output[0].code).contains('"darwin"')
 })

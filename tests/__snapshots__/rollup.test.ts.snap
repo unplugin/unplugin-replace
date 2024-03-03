@@ -1,11 +1,24 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
-exports[`rollup 1`] = `
+exports[`rollup > find regexp 1`] = `
+"import 'node:process';
+
+const platform = null;
+
+console.info('hello null', platform);
+console.info(dEV);
+
+export { platform };
+"
+`;
+
+exports[`rollup > find string 1`] = `
 "import 'node:process';
 
 const platform = "darwin";
 
 console.log('hello "darwin"', platform);
+console.log(DEV);
 
 export { platform };
 "

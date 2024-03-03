@@ -4,6 +4,7 @@ exports[`esbuild 1`] = `
 "// tests/fixtures/main.js
 var platform = "darwin";
 console.log('hello "darwin"', platform);
+console.log(DEV);
 export {
   platform
 };
