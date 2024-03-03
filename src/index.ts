@@ -4,7 +4,7 @@ import MagicString from 'magic-string'
 import { type Options, resolveOption } from './core/options'
 
 export default createUnplugin<Options | undefined, false>((rawOptions = {}) => {
-  const {
+  let {
     include,
     exclude,
     preventAssignment,
@@ -48,6 +48,12 @@ export default createUnplugin<Options | undefined, false>((rawOptions = {}) => {
       if (keys.length === 0) return null
       if (!filter(id)) return null
       return executeReplacement(code, id)
+    },
+
+    vite: {
+      configResolved(config) {
+        sourceMap = config.command === 'build' ? !!config.build.sourcemap : true
+      },
     },
   }
 
