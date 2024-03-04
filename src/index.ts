@@ -1,3 +1,8 @@
+/**
+ * This entry file is for main unplugin.
+ * @module
+ */
+
 import {
   type TransformResult,
   type UnpluginInstance,
@@ -7,6 +12,9 @@ import { createFilter } from '@rollup/pluginutils'
 import MagicString from 'magic-string'
 import { type Options, type ReplaceItem, resolveOptions } from './core/options'
 
+/**
+ * The main unplugin instance.
+ */
 const pluign: UnpluginInstance<Options | undefined, false> = createUnplugin<
   Options | undefined,
   false
