@@ -1,9 +1,16 @@
-import { type TransformResult, createUnplugin } from 'unplugin'
+import {
+  type TransformResult,
+  type UnpluginInstance,
+  createUnplugin,
+} from 'unplugin'
 import { createFilter } from '@rollup/pluginutils'
 import MagicString from 'magic-string'
 import { type Options, type ReplaceItem, resolveOptions } from './core/options'
 
-export default createUnplugin<Options | undefined, false>((rawOptions = {}) => {
+const pluign: UnpluginInstance<Options | undefined, false> = createUnplugin<
+  Options | undefined,
+  false
+>((rawOptions = {}) => {
   const options = resolveOptions(rawOptions)
   const {
     include,
@@ -119,6 +126,7 @@ export default createUnplugin<Options | undefined, false>((rawOptions = {}) => {
     }
   }
 })
+export default pluign
 
 function escape(str: string) {
   // eslint-disable-next-line unicorn/prefer-string-replace-all
