@@ -75,15 +75,15 @@
   },
   "dependencies": {
     "@rollup/pluginutils": "^5.1.0",
-    "magic-string": "^0.30.7",
-    "unplugin": "^1.7.1"
+    "magic-string": "^0.30.8",
+    "unplugin": "^1.8.0"
   },
   "devDependencies": {
-    "@sxzz/eslint-config": "^3.8.0",
-    "@sxzz/prettier-config": "^2.0.0",
-    "@types/node": "^20.11.20",
+    "@sxzz/eslint-config": "^3.8.5",
+    "@sxzz/prettier-config": "^2.0.1",
+    "@types/node": "^20.11.24",
     "@vue-macros/test-utils": "^1.4.0",
-    "bumpp": "^9.3.0",
+    "bumpp": "^9.3.1",
     "esbuild": "^0.20.1",
     "eslint": "^8.57.0",
     "fast-glob": "^3.3.2",
