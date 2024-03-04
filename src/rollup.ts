@@ -12,10 +12,10 @@ import unplugin from './index'
  * @example
  * ```ts
  * // rollup.config.js
- * import Macros from 'unplugin-replace/rollup'
+ * import Replace from 'unplugin-replace/rollup'
  *
  * export default {
- *   plugins: [Macros()],
+ *   plugins: [Replace()],
  * }
  * ```
  */

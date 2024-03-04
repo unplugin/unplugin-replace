@@ -12,10 +12,10 @@ import unplugin from './index'
  * @example
  * ```ts
  * // vite.config.ts
- * import Macros from 'unplugin-replace/vite'
+ * import Replace from 'unplugin-replace/vite'
  *
  * export default defineConfig({
- *   plugins: [Macros()],
+ *   plugins: [Replace()],
  * })
  * ```
  */
