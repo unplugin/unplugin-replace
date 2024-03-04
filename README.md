@@ -7,7 +7,11 @@
 ## Installation
 
 ```bash
+# npm
 npm i -D unplugin-replace
+
+# jsr
+npx jsr add -D @unplugin/replace
 ```
 
 <details>
