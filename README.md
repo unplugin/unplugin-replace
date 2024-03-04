@@ -1,4 +1,4 @@
-# unplugin-replace [![npm](https://img.shields.io/npm/v/unplugin-replace.svg)](https://npmjs.com/package/unplugin-replace) [![jsr](https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fjsr-api.sxzz.moe%2Fversion%2F%40unplugin%2Freplace&query=version&prefix=v&label=jsr&color=%23f7df1e)](https://jsr.io/@unplugin/replace)
+# unplugin-replace [![npm](https://img.shields.io/npm/v/unplugin-replace.svg)](https://npmjs.com/package/unplugin-replace) [![jsr](https://img.shields.io/endpoint?url=https%3A%2F%2Fjsr-api.sxzz.moe%2Fbadge%2F%40unplugin%2Freplace)](https://jsr.io/@unplugin/replace)
 
 [![Unit Test](https://github.com/unplugin/unplugin-replace/actions/workflows/unit-test.yml/badge.svg)](https://github.com/unplugin/unplugin-replace/actions/workflows/unit-test.yml)
 
