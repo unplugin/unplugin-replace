@@ -71,16 +71,33 @@ module.exports = {
 
 ## Usage
 
-Refer to [@rollup/plugin-replace](https://github.com/rollup/plugins/tree/master/packages/replace#options).
+### Options
 
-## Options
+For all options please refer to [docs](https://github.com/rollup/plugins/tree/master/packages/replace#options).
 
-This plugin accepts all [@rollup/plugin-replace](https://github.com/rollup/plugins/tree/master/packages/replace#options) options, and some extra options that are specific to this plugin:
+This plugin accepts all [@rollup/plugin-replace](https://github.com/rollup/plugins/tree/master/packages/replace#options) options, and some extra options that are specific to this plugin.
 
 ### `options.values`
 
-- Type: `ReplaceMap`, `ReplaceItem[]`
-- Default: `null`
+- Type: `{ [find: string]: Replacement } | ReplaceItem[]`
+- Default: `[]`
+
+```ts
+type ReplaceItem = {
+  /** Supply a string or RegExp to find what you are looking for. */
+  find: string | RegExp
+
+  /**
+   * Can be a string or a function.
+   * - If it's a string, it will replace the substring matched by pattern. A number of special replacement patterns are supported
+   * - If it's a function, it will be invoked for every match and its return value is used as the replacement text.
+   */
+  replacement: Replacement
+}
+type Replacement = string | ((id: string, match: RegExpExecArray) => string)
+```
+
+Comparing with `@rollup/plugin-replace`, `find` option supports regex pattern.
 
 **Example:**
 
@@ -91,34 +108,12 @@ Replace({
       find: /apples/gi,
       replacement: 'oranges',
     },
+    {
+      find: 'process.env.NODE_ENV',
+      replacement: '"production"',
+    },
   ],
 })
-```
-
-`find`
-
-Supply a string or RegExp to find what you are looking for.
-
-`replacement`
-
-Can be a string or a function.
-
-- If it's a string, it will replace the substring matched by pattern. A number of special replacement patterns are supported
-- If it's a function, it will be invoked for every match and its return value is used as the replacement text.
-
-## Type Decalrations
-
-```ts
-type Replacement = string | ((id: string, match: RegExpExecArray) => string)
-
-type ReplaceItem<F = string | RegExp> = {
-  find: F
-  replacement: Replacement
-}
-
-type ReplaceMap = {
-  [str: string]: Replacement
-}
 ```
 
 ## Sponsors
