@@ -87,9 +87,11 @@ This plugin accepts all [@rollup/plugin-replace](https://github.com/rollup/plugi
 ```ts
 Replace({
   values: [
-    find: /apples/gi,
-    replacement: 'oranges'
-  ]
+    {
+      find: /apples/gi,
+      replacement: 'oranges',
+    },
+  ],
 })
 ```
 
@@ -107,9 +109,7 @@ Can be a string or a function.
 ## Type Decalrations
 
 ```ts
-type Replacement =
-  | string
-  | ((id: string, match: RegExpExecArray) => string)
+type Replacement = string | ((id: string, match: RegExpExecArray) => string)
 
 type ReplaceItem<F = string | RegExp> = {
   find: F
