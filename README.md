@@ -95,11 +95,14 @@ Replace({
 
 `find`
 
-Supply a string or RegExp to find what you are looking for
+Supply a string or RegExp to find what you are looking for.
 
 `replacement`
 
-Supply a string to directly replace what you've found, or a function to dynamically modify your findings
+Can be a string or a function.
+
+- If it's a string, it will replace the substring matched by pattern. A number of special replacement patterns are supported
+- If it's a function, it will be invoked for every match and its return value is used as the replacement text.
 
 ## Type Decalrations
 
