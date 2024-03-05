@@ -73,6 +73,51 @@ module.exports = {
 
 Refer to [@rollup/plugin-replace](https://github.com/rollup/plugins/tree/master/packages/replace#options).
 
+## Options
+
+This plugin accepts all [@rollup/plugin-replace](https://github.com/rollup/plugins/tree/master/packages/replace#options) options, and some extra options that are specific to this plugin:
+
+### `options.values`
+
+- Type: `ReplaceMap`, `ReplaceItem[]`
+- Default: `null`
+
+**Example:**
+
+```ts
+Replace({
+  values: [
+    find: /apples/gi,
+    replacement: 'oranges'
+  ]
+})
+```
+
+`find`
+
+Supply a string or RegExp to find what you are looking for
+
+`replacement`
+
+Supply a string to directly replace what you've found, or a function to dynamically modify your findings
+
+## Type Decalrations
+
+```ts
+type Replacement =
+  | string
+  | ((id: string, match: RegExpExecArray) => string)
+
+type ReplaceItem<F = string | RegExp> = {
+  find: F
+  replacement: Replacement
+}
+
+type ReplaceMap = {
+  [str: string]: Replacement
+}
+```
+
 ## Sponsors
 
 <p align="center">
