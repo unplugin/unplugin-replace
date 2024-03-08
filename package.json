@@ -43,6 +43,10 @@
       "require": "./dist/rollup.js",
       "import": "./dist/rollup.mjs"
     },
+    "./rolldown": {
+      "require": "./dist/rolldown.js",
+      "import": "./dist/rolldown.mjs"
+    },
     "./esbuild": {
       "require": "./dist/esbuild.js",
       "import": "./dist/esbuild.mjs"
@@ -88,6 +92,7 @@
     "eslint": "^8.57.0",
     "fast-glob": "^3.3.2",
     "prettier": "^3.2.5",
+    "rolldown": "0.10.0-canary-862ce3a-20240325012650",
     "rollup": "^4.13.0",
     "tsup": "^8.0.2",
     "tsx": "^4.7.1",

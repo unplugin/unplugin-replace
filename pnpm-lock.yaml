@@ -43,6 +43,9 @@ devDependencies:
   prettier:
     specifier: ^3.2.5
     version: 3.2.5
+  rolldown:
+    specifier: 0.10.0-canary-862ce3a-20240325012650
+    version: 0.10.0-canary-862ce3a-20240325012650
   rollup:
     specifier: ^4.13.0
     version: 4.13.0
@@ -941,6 +944,86 @@ packages:
       picocolors: 1.0.0
       tslib: 2.6.2
     dev: true
+
+  /@rolldown/binding-darwin-arm64@0.10.0-canary-862ce3a-20240325012650:
+    resolution: {integrity: sha512-jHrXFlMWFp33aOfzfkEdk75iMpi7U4McJ5dOE/RCdZQin9U7ug6TdxCLaYMFSnwR/b6dKwsRM4vA0pXH7PRC6A==}
+    cpu: [arm64]
+    os: [darwin]
+    requiresBuild: true
+    dev: true
+    optional: true
+
+  /@rolldown/binding-darwin-x64@0.10.0-canary-862ce3a-20240325012650:
+    resolution: {integrity: sha512-zuRFaNmSyP9boUH2uEQyPpTDQBavL97Fio/hNRlM3Gx0tzibiEAIdfeCqOjTBXvcVcYpxPHDwtgyWEUC9ZmHlQ==}
+    cpu: [x64]
+    os: [darwin]
+    requiresBuild: true
+    dev: true
+    optional: true
+
+  /@rolldown/binding-linux-arm-gnueabihf@0.10.0-canary-862ce3a-20240325012650:
+    resolution: {integrity: sha512-BWDK0NyL5rZu6LjVsTAhKcTJmjk4wg5kfAmVE1BKvzIx6FXHn4be+rj44AADUvQ7snWTRfEARjwvh0wLY1Zc6g==}
+    cpu: [arm]
+    os: [linux]
+    requiresBuild: true
+    dev: true
+    optional: true
+
+  /@rolldown/binding-linux-arm64-gnu@0.10.0-canary-862ce3a-20240325012650:
+    resolution: {integrity: sha512-O3pPUkG/YWVmVni089zjmxq6xNywPgqd/VVySG9Khia5aa5VP6JPIwoZ0k0+fAtvEa3MhnvgLnQrbZ4eJgTYoA==}
+    cpu: [arm64]
+    os: [linux]
+    requiresBuild: true
+    dev: true
+    optional: true
+
+  /@rolldown/binding-linux-arm64-musl@0.10.0-canary-862ce3a-20240325012650:
+    resolution: {integrity: sha512-W5WiCM5zlR7QOSjDK/aSusm4wd6j5uipOO18aRTkOK7sS31uRI1Hrthx5xciA/lOKh14PgzV9R7tzaR8yzMH6w==}
+    cpu: [arm64]
+    os: [linux]
+    requiresBuild: true
+    dev: true
+    optional: true
+
+  /@rolldown/binding-linux-x64-gnu@0.10.0-canary-862ce3a-20240325012650:
+    resolution: {integrity: sha512-pbRswA8zCbl+PXQWzQXn/cB94KGLUY2zxATlaGQUObFbJWnjYV7mGhmGqrEdAWtXlUS0GKSVBptSv7SWpCBt7Q==}
+    cpu: [x64]
+    os: [linux]
+    requiresBuild: true
+    dev: true
+    optional: true
+
+  /@rolldown/binding-linux-x64-musl@0.10.0-canary-862ce3a-20240325012650:
+    resolution: {integrity: sha512-dNgEdI94pTiovQHY8os/U/RUaMAw2pWy6g5A7hDZAVQ0sMcUIU4QNcG/XWZ7htge6NNCUlq7JLm8be7LuZpd8A==}
+    cpu: [x64]
+    os: [linux]
+    requiresBuild: true
+    dev: true
+    optional: true
+
+  /@rolldown/binding-win32-arm64-msvc@0.10.0-canary-862ce3a-20240325012650:
+    resolution: {integrity: sha512-a9CESngBA+t6CvU4/vAeMC9Qo2S30CjT7T44X74ojPQ7fYV8qb33ZFOVINmT7hblTKMAxWewe5iqCVVxJ8RgdQ==}
+    cpu: [arm64]
+    os: [win32]
+    requiresBuild: true
+    dev: true
+    optional: true
+
+  /@rolldown/binding-win32-ia32-msvc@0.10.0-canary-862ce3a-20240325012650:
+    resolution: {integrity: sha512-nCzJsbf4fXnXJo3l89IIRHGtBhFawxdV/OdQ16/R31TOdJeMyHbSVEiuDclR/TZpr19/cXbE1DoZUth6Gjiu+w==}
+    cpu: [ia32]
+    os: [win32]
+    requiresBuild: true
+    dev: true
+    optional: true
+
+  /@rolldown/binding-win32-x64-msvc@0.10.0-canary-862ce3a-20240325012650:
+    resolution: {integrity: sha512-NIAQ2W/dtTjs9rPGH8j8sms0dijUa7zUCrppsrSUwdgIFDdDzVG9joI6pkdd2g8Ul4FAC3Agi/aS8gMvb/j2mA==}
+    cpu: [x64]
+    os: [win32]
+    requiresBuild: true
+    dev: true
+    optional: true
 
   /@rollup/plugin-json@6.1.0(rollup@4.13.0):
     resolution: {integrity: sha512-EGI2te5ENk1coGeADSIwZ7G2Q8CJS2sF120T7jLw4xFw9n7wIOXHo+kIYRAoVpJAN+kmqZSoO3Fp4JtoNF4ReA==}
@@ -3906,6 +3989,22 @@ packages:
     hasBin: true
     dependencies:
       glob: 7.2.3
+    dev: true
+
+  /rolldown@0.10.0-canary-862ce3a-20240325012650:
+    resolution: {integrity: sha512-JgelntXit0jM6e+Pdd+nKF+RXGTYsK6SK0OjAhgN2HV4KQsvyIIhP+Bq/6v9Gi0kHzz3WROiuxaMJrVte2R+dg==}
+    hasBin: true
+    optionalDependencies:
+      '@rolldown/binding-darwin-arm64': 0.10.0-canary-862ce3a-20240325012650
+      '@rolldown/binding-darwin-x64': 0.10.0-canary-862ce3a-20240325012650
+      '@rolldown/binding-linux-arm-gnueabihf': 0.10.0-canary-862ce3a-20240325012650
+      '@rolldown/binding-linux-arm64-gnu': 0.10.0-canary-862ce3a-20240325012650
+      '@rolldown/binding-linux-arm64-musl': 0.10.0-canary-862ce3a-20240325012650
+      '@rolldown/binding-linux-x64-gnu': 0.10.0-canary-862ce3a-20240325012650
+      '@rolldown/binding-linux-x64-musl': 0.10.0-canary-862ce3a-20240325012650
+      '@rolldown/binding-win32-arm64-msvc': 0.10.0-canary-862ce3a-20240325012650
+      '@rolldown/binding-win32-ia32-msvc': 0.10.0-canary-862ce3a-20240325012650
+      '@rolldown/binding-win32-x64-msvc': 0.10.0-canary-862ce3a-20240325012650
     dev: true
 
   /rollup-plugin-esbuild@6.1.1(esbuild@0.20.2)(rollup@4.13.0):
