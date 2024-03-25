@@ -79,9 +79,9 @@
     "unplugin": "^1.10.0"
   },
   "devDependencies": {
-    "@sxzz/eslint-config": "^3.8.6",
+    "@sxzz/eslint-config": "^3.8.7",
     "@sxzz/prettier-config": "^2.0.1",
-    "@types/node": "^20.11.28",
+    "@types/node": "^20.11.30",
     "@vue-macros/test-utils": "^1.4.0",
     "bumpp": "^9.4.0",
     "esbuild": "^0.20.2",
@@ -91,10 +91,10 @@
     "rollup": "^4.13.0",
     "tsup": "^8.0.2",
     "tsx": "^4.7.1",
-    "typescript": "^5.4.2",
-    "vite": "^5.1.6",
+    "typescript": "^5.4.3",
+    "vite": "^5.2.6",
     "vitest": "^1.4.0",
-    "webpack": "^5.90.3"
+    "webpack": "^5.91.0"
   },
   "engines": {
     "node": ">=18.0.0"
