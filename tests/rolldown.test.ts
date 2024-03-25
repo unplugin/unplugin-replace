@@ -1,6 +1,6 @@
 import path from 'node:path'
 import { expect, test } from 'vitest'
-import { rolldown } from '@rolldown/node'
+import { rolldown } from 'rolldown'
 import UnpluginReplace from '../src/rolldown'
 
 test('rolldown', async () => {
@@ -13,7 +13,7 @@ test('rolldown', async () => {
       }),
     ],
   })
-  const { output } = await build.generate({ format: 'esm' })
+  const { output } = await build.generate({ format: 'es' })
   const code = output[0].code
   expect(code).toMatchSnapshot()
   expect(code).not.contains('process.platform')
