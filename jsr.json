@@ -1,6 +1,6 @@
 {
   "name": "@unplugin/replace",
-  "version": "0.3.0",
+  "version": "0.3.1",
   "exports": {
     "./index": "./src/index.ts",
     "./esbuild": "./src/esbuild.ts",
@@ -9,6 +9,10 @@
     "./webpack": "./src/webpack.ts"
   },
   "publish": {
-    "include": ["src", "LICENSE", "README.md"]
+    "include": [
+      "src",
+      "LICENSE",
+      "README.md"
+    ]
   }
 }
