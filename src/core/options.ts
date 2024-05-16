@@ -63,6 +63,8 @@ type Overwrite<T, U> = Pick<T, Exclude<keyof T, keyof U>> & U
 export type OptionsResolved = Overwrite<
   Required<BaseOptions>,
   {
+    include: BaseOptions['include']
+    exclude: BaseOptions['exclude']
     enforce: BaseOptions['enforce']
     values: ReplaceItem[]
   }
@@ -70,8 +72,8 @@ export type OptionsResolved = Overwrite<
 
 export function resolveOptions(options: Options): OptionsResolved {
   return {
-    include: options.include || [/\.[cm]?[jt]sx?$/],
-    exclude: options.exclude || [/node_modules/],
+    include: options.include,
+    exclude: options.exclude,
     sourceMap: options.sourceMap ?? true,
     delimiters: options.delimiters || ['\\b', '\\b(?!\\.)'],
     preventAssignment: options.preventAssignment ?? false,
