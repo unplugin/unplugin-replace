@@ -11,8 +11,10 @@
   "publish": {
     "include": [
       "src",
-      "LICENSE",
-      "README.md"
+      "package.json",
+      "jsr.json",
+      "README.md",
+      "LICENSE"
     ]
   }
 }
