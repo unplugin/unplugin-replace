@@ -1,7 +1,7 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
 exports[`rolldown 1`] = `
-"import { default as process } from "node:process";
+"import "node:process";
 
 //#region tests/fixtures/main.js
 const platform = 'darwin';
