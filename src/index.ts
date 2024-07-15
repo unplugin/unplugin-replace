@@ -121,9 +121,8 @@ const pluign: UnpluginInstance<Options | undefined, false> = createUnplugin<
     const escapedKeys = stringValues
       .map(({ find }) => find)
       .sort(longest)
-      // eslint-disable-next-line unicorn/no-array-callback-reference
       .map(escape)
-    const lookahead = preventAssignment ? '(?!\\s*(=[^=]|:[^:]))' : ''
+    const lookahead = preventAssignment ? String.raw`(?!\s*(=[^=]|:[^:]))` : ''
     const pattern = new RegExp(
       `${delimiters[0]}(${escapedKeys.join('|')})${delimiters[1]}${lookahead}`,
       'g',
@@ -138,7 +137,7 @@ export default pluign
 
 function escape(str: string) {
   // eslint-disable-next-line unicorn/prefer-string-replace-all
-  return str.replace(/[$()*+./?[\\\]^{|}-]/g, '\\$&')
+  return str.replace(/[$()*+./?[\\\]^{|}-]/g, String.raw`\$&`)
 }
 
 function ensureFunction(

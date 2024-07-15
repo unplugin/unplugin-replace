@@ -75,7 +75,7 @@ export function resolveOptions(options: Options): OptionsResolved {
     include: options.include,
     exclude: options.exclude,
     sourceMap: options.sourceMap ?? true,
-    delimiters: options.delimiters || ['\\b', '\\b(?!\\.)'],
+    delimiters: options.delimiters || [String.raw`\b`, String.raw`\b(?!\.)`],
     preventAssignment: options.preventAssignment ?? false,
     objectGuards: options.objectGuards ?? false,
     values: getReplacements(),
