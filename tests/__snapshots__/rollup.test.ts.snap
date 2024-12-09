@@ -1,7 +1,8 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
 exports[`rollup > find regexp 1`] = `
-"import 'node:process';
+"// main.js
+import 'node:process';
 
 const platform = null;
 
@@ -13,7 +14,8 @@ export { platform };
 `;
 
 exports[`rollup > find string 1`] = `
-"import 'node:process';
+"// main.js
+import 'node:process';
 
 const platform = "darwin";
 

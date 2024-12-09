@@ -3,13 +3,12 @@
 exports[`webpack 1`] = `
 "/******/ (() => { // webpackBootstrap
 /******/ 	"use strict";
-var __webpack_exports__ = {};
 
 // UNUSED EXPORTS: platform
 
-;// CONCATENATED MODULE: external "node:process"
+;// external "node:process"
 const external_node_process_namespaceObject = require("node:process");
-;// CONCATENATED MODULE: ./tests/fixtures/main.js
+;// ./tests/fixtures/main.js
 
 
 const platform = "darwin"
