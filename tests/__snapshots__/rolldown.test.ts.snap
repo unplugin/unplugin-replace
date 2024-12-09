@@ -4,8 +4,8 @@ exports[`rolldown 1`] = `
 "import "node:process";
 
 //#region tests/fixtures/main.js
-const platform = 'darwin';
-console.log('hello "darwin"', platform);
+const platform = "darwin";
+console.log("hello \\"darwin\\"", platform);
 console.log(DEV);
 
 //#endregion
