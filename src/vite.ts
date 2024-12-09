@@ -19,4 +19,5 @@ import unplugin from './index'
  * })
  * ```
  */
-export default unplugin.vite
+const vite = unplugin.vite as typeof unplugin.vite
+export default vite

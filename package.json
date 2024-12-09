@@ -56,6 +56,10 @@
       "require": "./dist/esbuild.cjs",
       "import": "./dist/esbuild.js"
     },
+    "./farm": {
+      "require": "./dist/farm.cjs",
+      "import": "./dist/farm.js"
+    },
     "./*": [
       "./*",
       "./*.d.ts"

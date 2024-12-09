@@ -10,11 +10,14 @@ import unplugin from './index'
  * Rspack plugin
  *
  * @example
- * ```ts
+ * ```js
  * // rspack.config.js
- * module.exports = {
- *  plugins: [require('unplugin-replace/rspack')()],
+ * import Replace from 'unplugin-replace/rspack'
+ *
+ * default export {
+ *  plugins: [Replace()],
  * }
  * ```
  */
-export default unplugin.rspack
+const rspack = unplugin.rspack as typeof unplugin.rspack
+export default rspack

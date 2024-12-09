@@ -11,12 +11,11 @@ import unplugin from './index'
  *
  * @example
  * ```ts
- * // esbuild.config.js
  * import { build } from 'esbuild'
- *
- * build({
- *   plugins: [require('unplugin-replace/esbuild')()],
- * })
- * ```
+ * import Replace from 'unplugin-replace/esbuild'
+ * 
+ * build({ plugins: [Replace()] })
+```
  */
-export default unplugin.esbuild
+const esbuild = unplugin.esbuild as typeof unplugin.esbuild
+export default esbuild

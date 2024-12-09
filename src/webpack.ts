@@ -10,11 +10,14 @@ import unplugin from './index'
  * Webpack plugin
  *
  * @example
- * ```ts
+ * ```js
  * // webpack.config.js
- * module.exports = {
- *  plugins: [require('unplugin-replace/webpack')()],
+ * import Replace from 'unplugin-replace/webpack'
+ *
+ * default export {
+ *  plugins: [Replace()],
  * }
  * ```
  */
-export default unplugin.webpack
+const webpack = unplugin.webpack as typeof unplugin.webpack
+export default webpack
