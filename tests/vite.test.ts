@@ -1,6 +1,6 @@
 import path from 'node:path'
-import { expect, test } from 'vitest'
 import { build } from 'vite'
+import { expect, test } from 'vitest'
 import UnpluginReplace from '../src/vite'
 import type { RollupOutput } from 'rollup'
 

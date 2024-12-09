@@ -99,11 +99,11 @@ export function resolveOptions(options: Options): OptionsResolved {
     delete values.objectGuards
     return normalizeObjectValues(values as ReplaceMap)
   }
+}
 
-  function normalizeObjectValues(values: ReplaceMap): ReplaceItem[] {
-    return Object.entries(values).map(([find, replacement]) => ({
-      find,
-      replacement,
-    }))
-  }
+function normalizeObjectValues(values: ReplaceMap): ReplaceItem[] {
+  return Object.entries(values).map(([find, replacement]) => ({
+    find,
+    replacement,
+  }))
 }

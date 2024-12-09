@@ -3,14 +3,14 @@
  * @module
  */
 
-import {
-  type TransformResult,
-  type UnpluginInstance,
-  createUnplugin,
-} from 'unplugin'
 import { createFilter } from '@rollup/pluginutils'
 import MagicString from 'magic-string'
-import { type Options, type ReplaceItem, resolveOptions } from './core/options'
+import {
+  createUnplugin,
+  type TransformResult,
+  type UnpluginInstance,
+} from 'unplugin'
+import { resolveOptions, type Options, type ReplaceItem } from './core/options'
 
 /**
  * The main unplugin instance.
@@ -152,7 +152,7 @@ function longest(a: string, b: string) {
 }
 
 const objKeyRegEx =
-  /^([$A-Z_a-z\u00A0-\uFFFF][\w$\u00A0-\uFFFF]*)(\.([$A-Z_a-z\u00A0-\uFFFF][\w$\u00A0-\uFFFF]*))+$/
+  /^([$A-Z_\u00A0-\uFFFF][\w$\u00A0-\uFFFF]*)(\.([$A-Z_\u00A0-\uFFFF][\w$\u00A0-\uFFFF]*))+$/i
 function expandTypeofReplacements(values: ReplaceItem<string>[]) {
   values.forEach(({ find }) => {
     const objMatch = find.match(objKeyRegEx)

@@ -1,6 +1,6 @@
 import path from 'node:path'
-import { describe, expect, test } from 'vitest'
 import { rollupBuild } from '@vue-macros/test-utils'
+import { describe, expect, test } from 'vitest'
 import UnpluginReplace from '../src/rollup'
 
 describe('rollup', () => {

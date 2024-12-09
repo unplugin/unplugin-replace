@@ -1,6 +1,6 @@
 import path from 'node:path'
-import { expect, test } from 'vitest'
 import { rolldown } from 'rolldown'
+import { expect, test } from 'vitest'
 import UnpluginReplace from '../src/rolldown'
 
 test('rolldown', async () => {

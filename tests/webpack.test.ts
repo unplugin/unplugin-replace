@@ -1,6 +1,6 @@
-import path from 'node:path'
-import os from 'node:os'
 import { mkdtemp, readFile, rm } from 'node:fs/promises'
+import os from 'node:os'
+import path from 'node:path'
 import { expect, onTestFinished, test } from 'vitest'
 import webpack from 'webpack'
 import UnpluginReplace from '../src/webpack'
