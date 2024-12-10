@@ -15,7 +15,7 @@ import { resolveOptions, type Options, type ReplaceItem } from './core/options'
 /**
  * The main unplugin instance.
  */
-const pluign: UnpluginInstance<Options | undefined, false> = createUnplugin<
+const plugin: UnpluginInstance<Options | undefined, false> = createUnplugin<
   Options | undefined,
   false
 >((rawOptions = {}) => {
@@ -122,9 +122,12 @@ const pluign: UnpluginInstance<Options | undefined, false> = createUnplugin<
       .map(({ find }) => find)
       .sort(longest)
       .map(escape)
-    const lookahead = preventAssignment ? String.raw`(?!\s*(=[^=]|:[^:]))` : ''
+    const lookbehind = preventAssignment
+      ? String.raw`(?<!\b(?:const|let|var)\s*)`
+      : ''
+    const lookahead = preventAssignment ? String.raw`(?!\s*=[^=])` : ''
     const pattern = new RegExp(
-      `${delimiters[0]}(${escapedKeys.join('|')})${delimiters[1]}${lookahead}`,
+      `${lookbehind}${delimiters[0]}(${escapedKeys.join('|')})${delimiters[1]}${lookahead}`,
       'g',
     )
 
@@ -133,7 +136,7 @@ const pluign: UnpluginInstance<Options | undefined, false> = createUnplugin<
     }
   }
 })
-export default pluign
+export default plugin
 
 function escape(str: string) {
   // eslint-disable-next-line unicorn/prefer-string-replace-all
