@@ -1,6 +1,6 @@
 {
   "name": "unplugin-replace",
-  "version": "0.4.0",
+  "version": "0.4.1",
   "packageManager": "pnpm@10.2.0",
   "description": "A universal bundler plugin which replaces targeted strings in files.",
   "type": "module",
