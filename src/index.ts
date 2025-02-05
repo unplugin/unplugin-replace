@@ -3,13 +3,13 @@
  * @module
  */
 
-import { createFilter } from '@rollup/pluginutils'
 import MagicString from 'magic-string'
 import {
   createUnplugin,
   type TransformResult,
   type UnpluginInstance,
 } from 'unplugin'
+import { createFilter } from 'unplugin-utils'
 import { resolveOptions, type Options, type ReplaceItem } from './core/options'
 
 /**

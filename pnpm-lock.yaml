@@ -8,15 +8,15 @@ importers:
 
   .:
     dependencies:
-      '@rollup/pluginutils':
-        specifier: ^5.1.4
-        version: 5.1.4(rollup@4.34.4)
       magic-string:
         specifier: ^0.30.17
         version: 0.30.17
       unplugin:
         specifier: ^2.1.2
         version: 2.1.2
+      unplugin-utils:
+        specifier: ^0.2.2
+        version: 0.2.2
     devDependencies:
       '@sxzz/eslint-config':
         specifier: ^5.0.1
@@ -2640,6 +2640,10 @@ packages:
 
   unist-util-visit@5.0.0:
     resolution: {integrity: sha512-MR04uvD+07cwl/yhVuVWAtw+3GOR/knlL55Nd/wAdblk27GCVt3lqpTivy/tkJcZoNPzTwS1Y+KMojlLDhoTzg==}
+
+  unplugin-utils@0.2.2:
+    resolution: {integrity: sha512-4h0AwkxZ7Xtsf6na40YwRnQe7iKyePhLYjysESsASE0OnU+U49M5sj+r1mH33LtmTJAJIJmDRlCaIvJ+g8thKQ==}
+    engines: {node: '>=18.12.0'}
 
   unplugin-vue@5.2.1:
     resolution: {integrity: sha512-yHNruKlkP6HjH7uXdCYiEyvD3exfZl+Mu93y+lI9B2wDafk7RLBoTzKa4R24UD6v5YQwfadgBjAdv9e99gnrFw==}
@@ -5655,6 +5659,11 @@ snapshots:
       '@types/unist': 3.0.3
       unist-util-is: 6.0.0
       unist-util-visit-parents: 6.0.1
+
+  unplugin-utils@0.2.2:
+    dependencies:
+      pathe: 2.0.2
+      picomatch: 4.0.2
 
   unplugin-vue@5.2.1(@types/node@22.13.1)(jiti@2.4.2)(terser@5.38.0)(tsx@4.19.2)(yaml@2.7.0):
     dependencies:
