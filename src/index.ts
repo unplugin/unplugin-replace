@@ -9,7 +9,6 @@ import {
   type TransformResult,
   type UnpluginInstance,
 } from 'unplugin'
-import { createFilter } from 'unplugin-utils'
 import { resolveOptions, type Options, type ReplaceItem } from './core/options'
 
 /**
@@ -28,8 +27,6 @@ const plugin: UnpluginInstance<Options | undefined, false> = createUnplugin<
     objectGuards,
     preventAssignment,
   } = options
-  const filter = createFilter(include, exclude)
-
   const stringValues = options.values.filter(
     (value): value is ReplaceItem<string> => typeof value.find === 'string',
   )
@@ -58,13 +55,13 @@ const plugin: UnpluginInstance<Options | undefined, false> = createUnplugin<
       }
     },
 
-    transformInclude(id) {
-      if (values.length === 0) return false
-      return filter(id)
-    },
+    transform: {
+      filter: { id: { include, exclude } },
+      handler(code, id) {
+        if (values.length === 0) return
 
-    transform(code, id) {
-      return executeReplacement(code, id)
+        return executeReplacement(code, id)
+      },
     },
 
     vite: {
