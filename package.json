@@ -62,24 +62,24 @@
   },
   "dependencies": {
     "magic-string": "^0.30.17",
-    "unplugin": "^2.3.0"
+    "unplugin": "^2.3.2"
   },
   "devDependencies": {
     "@sxzz/eslint-config": "^6.1.1",
     "@sxzz/prettier-config": "^2.2.1",
     "@sxzz/test-utils": "^0.5.4",
-    "@types/node": "^22.14.0",
+    "@types/node": "^22.14.1",
     "bumpp": "^10.1.0",
     "esbuild": "^0.25.2",
     "eslint": "^9.24.0",
     "fast-glob": "^3.3.3",
     "prettier": "^3.5.3",
     "rolldown": "nightly",
-    "rollup": "^4.39.0",
+    "rollup": "^4.40.0",
     "tsdown": "^0.6.10",
     "tsx": "^4.19.3",
     "typescript": "^5.8.3",
-    "vite": "^6.2.5",
+    "vite": "^6.2.6",
     "vitest": "^3.1.1",
     "webpack": "^5.99.5"
   },
