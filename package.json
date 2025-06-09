@@ -1,7 +1,7 @@
 {
   "name": "unplugin-replace",
   "version": "0.6.0",
-  "packageManager": "pnpm@10.11.0",
+  "packageManager": "pnpm@10.12.1",
   "description": "A universal bundler plugin which replaces targeted strings in files.",
   "type": "module",
   "keywords": [
@@ -68,19 +68,19 @@
     "@sxzz/eslint-config": "^7.0.2",
     "@sxzz/prettier-config": "^2.2.1",
     "@sxzz/test-utils": "^0.5.6",
-    "@types/node": "^22.15.29",
+    "@types/node": "^22.15.30",
     "bumpp": "^10.1.1",
     "esbuild": "^0.25.5",
     "eslint": "^9.28.0",
     "fast-glob": "^3.3.3",
     "prettier": "^3.5.3",
     "rolldown": "nightly",
-    "rollup": "^4.41.1",
-    "tsdown": "^0.12.6",
+    "rollup": "^4.42.0",
+    "tsdown": "^0.12.7",
     "tsx": "^4.19.4",
     "typescript": "^5.8.3",
     "vite": "^6.3.5",
-    "vitest": "^3.1.4",
+    "vitest": "^3.2.2",
     "webpack": "^5.99.9"
   },
   "engines": {
