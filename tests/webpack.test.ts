@@ -26,7 +26,7 @@ test('webpack', async () => {
         minimize: false,
       },
     })
-    compiler.run((error, stats) => {
+    compiler!.run((error, stats) => {
       if (error) return reject(error)
       resolve(stats!)
     })
