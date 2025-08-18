@@ -1,7 +1,7 @@
 {
   "name": "unplugin-replace",
   "version": "0.6.0",
-  "packageManager": "pnpm@10.13.1",
+  "packageManager": "pnpm@10.14.0",
   "description": "A universal bundler plugin which replaces targeted strings in files.",
   "type": "module",
   "keywords": [
@@ -62,26 +62,26 @@
   },
   "dependencies": {
     "magic-string": "^0.30.17",
-    "unplugin": "^2.3.5"
+    "unplugin": "^2.3.6"
   },
   "devDependencies": {
-    "@sxzz/eslint-config": "^7.0.6",
+    "@sxzz/eslint-config": "^7.1.2",
     "@sxzz/prettier-config": "^2.2.3",
-    "@sxzz/test-utils": "^0.5.7",
-    "@types/node": "^22.16.5",
-    "bumpp": "^10.2.0",
-    "esbuild": "^0.25.8",
-    "eslint": "^9.31.0",
+    "@sxzz/test-utils": "^0.5.9",
+    "@types/node": "^24.3.0",
+    "bumpp": "^10.2.3",
+    "esbuild": "^0.25.9",
+    "eslint": "^9.33.0",
     "fast-glob": "^3.3.3",
     "prettier": "^3.6.2",
     "rolldown": "nightly",
-    "rollup": "^4.45.1",
-    "tsdown": "^0.12.9",
-    "tsx": "^4.20.3",
-    "typescript": "^5.8.3",
-    "vite": "^7.0.5",
+    "rollup": "^4.46.3",
+    "tsdown": "^0.14.1",
+    "tsx": "^4.20.4",
+    "typescript": "^5.9.2",
+    "vite": "^7.1.2",
     "vitest": "^3.2.4",
-    "webpack": "^5.100.2"
+    "webpack": "^5.101.2"
   },
   "engines": {
     "node": ">=20.18.0"
