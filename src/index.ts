@@ -119,7 +119,7 @@ const plugin: UnpluginInstance<Options | undefined, false> = createUnplugin<
   function buildStringPattern(): RegExp | undefined {
     const escapedKeys = stringValues
       .map(({ find }) => find)
-      .sort(longest)
+      .toSorted(longest)
       .map(escape)
     const lookbehind = preventAssignment
       ? String.raw`(?<!\b(?:const|let|var)\s*)`

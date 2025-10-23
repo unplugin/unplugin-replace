@@ -32,7 +32,7 @@ test('webpack', async () => {
     })
   })
 
-  const result = await readFile(path.resolve(tmp, 'main.js'), 'utf-8')
+  const result = await readFile(path.resolve(tmp, 'main.js'), 'utf8')
   expect(result).toMatchSnapshot()
   expect(result).not.contains('process.platform')
   expect(result).contains('"darwin"')
