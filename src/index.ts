@@ -11,6 +11,8 @@ import {
 } from 'unplugin'
 import { resolveOptions, type Options, type ReplaceItem } from './core/options'
 
+export type { Options }
+
 /**
  * The main unplugin instance.
  */
