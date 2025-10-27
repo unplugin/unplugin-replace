@@ -61,13 +61,13 @@
     "prepublishOnly": "pnpm run build"
   },
   "dependencies": {
-    "magic-string": "^0.30.19",
+    "magic-string": "^0.30.21",
     "unplugin": "^2.3.10"
   },
   "devDependencies": {
     "@sxzz/eslint-config": "^7.2.7",
     "@sxzz/prettier-config": "^2.2.4",
-    "@sxzz/test-utils": "^0.5.11",
+    "@sxzz/test-utils": "^0.5.12",
     "@types/node": "^24.9.1",
     "bumpp": "^10.3.1",
     "esbuild": "^0.25.11",
@@ -76,11 +76,11 @@
     "prettier": "^3.6.2",
     "rolldown": "nightly",
     "rollup": "^4.52.5",
-    "tsdown": "^0.15.9",
+    "tsdown": "^0.15.10",
     "tsx": "^4.20.6",
     "typescript": "^5.9.3",
-    "vite": "^7.1.11",
-    "vitest": "^4.0.1",
+    "vite": "^7.1.12",
+    "vitest": "^4.0.3",
     "webpack": "^5.102.1"
   },
   "engines": {
