@@ -61,7 +61,7 @@
     "prepublishOnly": "pnpm run build"
   },
   "dependencies": {
-    "magic-string": "^0.30.21",
+    "rolldown-string": "^0.2.1",
     "unplugin": "^2.3.10"
   },
   "devDependencies": {
@@ -74,7 +74,7 @@
     "eslint": "^9.39.1",
     "fast-glob": "^3.3.3",
     "prettier": "^3.6.2",
-    "rolldown": "nightly",
+    "rolldown": "1.0.0-beta.54",
     "rollup": "^4.53.1",
     "tsdown": "^0.16.1",
     "tsx": "^4.20.6",

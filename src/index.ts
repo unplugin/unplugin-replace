@@ -3,12 +3,8 @@
  * @module
  */
 
-import MagicString from 'magic-string'
-import {
-  createUnplugin,
-  type TransformResult,
-  type UnpluginInstance,
-} from 'unplugin'
+import { withMagicString } from 'rolldown-string'
+import { createUnplugin, type UnpluginInstance } from 'unplugin'
 import { resolveOptions, type Options, type ReplaceItem } from './core/options'
 
 export type { Options }
@@ -59,11 +55,29 @@ const plugin: UnpluginInstance<Options | undefined, false> = createUnplugin<
 
     transform: {
       filter: { id: { include, exclude } },
-      handler(code, id) {
-        if (values.length === 0) return
+      handler: withMagicString(function (s, id) {
+        if (!values.length) return
 
-        return executeReplacement(code, id)
-      },
+        const code = s.toString()
+        let match: RegExpExecArray | null
+
+        for (const { find, replacement } of values) {
+          while ((match = find.exec(code))) {
+            const start = match.index
+            const end = start + match[0].length
+
+            const finalReplacement =
+              find === pattern
+                ? stringValues.find(({ find }) => find === match![1])!
+                    .replacement
+                : replacement
+            const result = String(ensureFunction(finalReplacement)(id, match))
+            s.overwrite(start, end, result)
+
+            if (!find.global) break
+          }
+        }
+      }),
     },
 
     vite: {
@@ -72,48 +86,6 @@ const plugin: UnpluginInstance<Options | undefined, false> = createUnplugin<
           config.command === 'build' ? !!config.build.sourcemap : true
       },
     },
-  }
-
-  function executeReplacement(code: string, id: string) {
-    const magicString = new MagicString(code)
-    if (!codeHasReplacements(code, id, magicString)) {
-      return null
-    }
-
-    const result: TransformResult = { code: magicString.toString() }
-    if (options.sourceMap) {
-      result.map = magicString.generateMap({ hires: true })
-    }
-    return result
-  }
-
-  function codeHasReplacements(
-    code: string,
-    id: string,
-    magicString: MagicString,
-  ) {
-    let has = false
-    let match: RegExpExecArray | null
-
-    for (const { find, replacement } of values) {
-      while ((match = find.exec(code))) {
-        has = true
-
-        const start = match.index
-        const end = start + match[0].length
-
-        const finalReplacement =
-          find === pattern
-            ? stringValues.find(({ find }) => find === match![1])!.replacement
-            : replacement
-        const result = String(ensureFunction(finalReplacement)(id, match))
-        magicString.overwrite(start, end, result)
-
-        if (!find.global) break
-      }
-    }
-
-    return has
   }
 
   function buildStringPattern(): RegExp | undefined {
