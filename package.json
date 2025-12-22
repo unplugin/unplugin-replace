@@ -2,7 +2,7 @@
   "name": "unplugin-replace",
   "type": "module",
   "version": "0.6.3",
-  "packageManager": "pnpm@10.26.0",
+  "packageManager": "pnpm@10.26.1",
   "description": "A universal bundler plugin which replaces targeted strings in files.",
   "author": "Kevin Deng <sxzz@sxzz.moe>",
   "license": "MIT",
@@ -68,21 +68,21 @@
     "unplugin": "^2.3.11"
   },
   "devDependencies": {
-    "@sxzz/eslint-config": "^7.4.3",
+    "@sxzz/eslint-config": "^7.4.4",
     "@sxzz/prettier-config": "^2.2.6",
-    "@sxzz/test-utils": "^0.5.14",
-    "@types/node": "^25.0.2",
+    "@sxzz/test-utils": "^0.5.15",
+    "@types/node": "^25.0.3",
     "bumpp": "^10.3.2",
-    "esbuild": "^0.27.1",
+    "esbuild": "^0.27.2",
     "eslint": "^9.39.2",
     "prettier": "^3.7.4",
-    "rolldown": "1.0.0-beta.54",
-    "rollup": "^4.53.4",
-    "tsdown": "^0.18.0",
+    "rolldown": "1.0.0-beta.56",
+    "rollup": "^4.54.0",
+    "tsdown": "^0.18.2",
     "typescript": "^5.9.3",
     "vite": "^7.3.0",
-    "vitest": "^4.0.15",
-    "webpack": "^5.103.0"
+    "vitest": "^4.0.16",
+    "webpack": "^5.104.1"
   },
   "prettier": "@sxzz/prettier-config"
 }
