@@ -74,7 +74,7 @@
     "@types/node": "^25.2.2",
     "bumpp": "^10.4.1",
     "esbuild": "^0.27.3",
-    "eslint": "^9.39.2",
+    "eslint": "^10.0.0",
     "prettier": "^3.8.1",
     "rolldown": "1.0.0-rc.3",
     "rollup": "^4.57.1",
