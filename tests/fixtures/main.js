@@ -4,3 +4,6 @@ export const platform = process.platform
 
 console.log('hello process.platform', platform)
 console.log(DEV)
+
+/** COMMENT_FLAG */
+export function x() {}

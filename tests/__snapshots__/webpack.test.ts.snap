@@ -4,7 +4,7 @@ exports[`webpack 1`] = `
 "/******/ (() => { // webpackBootstrap
 /******/ 	"use strict";
 
-// UNUSED EXPORTS: platform
+// UNUSED EXPORTS: platform, x
 
 ;// external "node:process"
 const external_node_process_namespaceObject = require("node:process");
@@ -15,6 +15,9 @@ const platform = "darwin"
 
 console.log('hello "darwin"', platform)
 console.log(DEV)
+
+/** COMMENT_FLAG */
+function x() {}
 
 /******/ })()
 ;"

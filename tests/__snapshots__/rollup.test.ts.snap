@@ -9,7 +9,10 @@ const platform = null;
 console.info('hello null', platform);
 console.info(dEV);
 
-export { platform };
+/** COMMENT_FLAG */
+function x() {}
+
+export { platform, x };
 "
 `;
 
@@ -22,6 +25,9 @@ const platform = "darwin";
 console.log('hello "darwin"', platform);
 console.log(DEV);
 
-export { platform };
+/** COMMENT_FLAG */
+function x() {}
+
+export { platform, x };
 "
 `;

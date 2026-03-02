@@ -45,6 +45,11 @@ export interface BaseOptions {
    */
   values?: ReplaceMap | ReplaceItem[]
   enforce?: 'pre' | 'post' | undefined
+  /**
+   * By default, comments are ignored by the plugin.
+   * Setting this option to `true` will include comments in the replacement process.
+   */
+  includeComments?: boolean
 }
 
 export interface Options extends BaseOptions {
@@ -80,6 +85,7 @@ export function resolveOptions(options: Options): OptionsResolved {
     objectGuards: options.objectGuards ?? false,
     values: getReplacements(),
     enforce: 'enforce' in options ? options.enforce : 'pre',
+    includeComments: options.includeComments ?? false,
   }
 
   function getReplacements() {

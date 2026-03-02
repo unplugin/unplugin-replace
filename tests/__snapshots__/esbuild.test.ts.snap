@@ -5,8 +5,11 @@ exports[`esbuild 1`] = `
 var platform = "darwin";
 console.log('hello "darwin"', platform);
 console.log(DEV);
+function x() {
+}
 export {
-  platform
+  platform,
+  x
 };
 "
 `;

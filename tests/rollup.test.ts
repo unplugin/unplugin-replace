@@ -10,10 +10,12 @@ describe('rollup', () => {
       [
         UnpluginReplace({
           'process.platform': '"darwin"',
+          COMMENT_FLAG: 'null',
         }),
       ],
     )
     expect(snapshot).toMatchSnapshot()
+    expect(snapshot).contains('COMMENT_FLAG')
     expect(snapshot).not.contains('process.platform')
     expect(snapshot).contains('"darwin"')
   })

@@ -7,7 +7,9 @@ exports[`rolldown 1`] = `
 const platform = "darwin";
 console.log("hello \\"darwin\\"", platform);
 console.log(DEV);
+/** COMMENT_FLAG */
+function x() {}
 
 //#endregion
-export { platform };"
+export { platform, x };"
 `;

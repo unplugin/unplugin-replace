@@ -3,6 +3,7 @@
  * @module
  */
 
+import jsTokens from 'js-tokens'
 import { withMagicString } from 'rolldown-string'
 import { createUnplugin, type UnpluginInstance } from 'unplugin'
 import { resolveOptions, type Options, type ReplaceItem } from './core/options'
@@ -24,6 +25,7 @@ const plugin: UnpluginInstance<Options | undefined, false> = createUnplugin<
     delimiters,
     objectGuards,
     preventAssignment,
+    includeComments,
   } = options
   const stringValues = options.values.filter(
     (value): value is ReplaceItem<string> => typeof value.find === 'string',
@@ -58,9 +60,25 @@ const plugin: UnpluginInstance<Options | undefined, false> = createUnplugin<
       handler: withMagicString(function (s, id) {
         if (!values.length) return
 
-        const code = s.toString()
-        let match: RegExpExecArray | null
+        let code = ''
+        if (includeComments) {
+          code = s.toString()
+        } else {
+          const tokens = jsTokens(s.toString(), { jsx: /\.[jt]sx?$/.test(id) })
+          for (const token of tokens) {
+            if (
+              token.type === 'MultiLineComment' ||
+              token.type === 'SingleLineComment' ||
+              token.type === 'HashbangComment'
+            ) {
+              code += ' '.repeat(token.value.length)
+            } else {
+              code += token.value
+            }
+          }
+        }
 
+        let match: RegExpExecArray | null
         for (const { find, replacement } of values) {
           while ((match = find.exec(code))) {
             const start = match.index
