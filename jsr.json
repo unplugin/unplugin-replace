@@ -1,6 +1,6 @@
 {
   "name": "@unplugin/replace",
-  "version": "0.6.4",
+  "version": "0.7.0",
   "exports": {
     "./index": "./src/index.ts",
     "./esbuild": "./src/esbuild.ts",
