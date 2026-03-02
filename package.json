@@ -2,7 +2,7 @@
   "name": "unplugin-replace",
   "type": "module",
   "version": "0.6.3",
-  "packageManager": "pnpm@10.30.1",
+  "packageManager": "pnpm@10.30.3",
   "description": "A universal bundler plugin which replaces targeted strings in files.",
   "author": "Kevin Deng <sxzz@sxzz.moe>",
   "license": "MIT",
@@ -33,8 +33,6 @@
     "./webpack": "./dist/webpack.mjs",
     "./package.json": "./package.json"
   },
-  "main": "./dist/index.mjs",
-  "module": "./dist/index.mjs",
   "types": "./dist/index.d.mts",
   "typesVersions": {
     "*": {
@@ -68,21 +66,22 @@
     "unplugin": "^3.0.0"
   },
   "devDependencies": {
-    "@sxzz/eslint-config": "^7.8.0",
+    "@sxzz/eslint-config": "^7.8.2",
     "@sxzz/prettier-config": "^2.3.1",
     "@sxzz/test-utils": "^0.5.15",
-    "@types/node": "^25.3.0",
+    "@types/node": "^25.3.3",
     "bumpp": "^10.4.1",
     "esbuild": "^0.27.3",
-    "eslint": "^9.39.2",
+    "eslint": "^10.0.2",
     "prettier": "^3.8.1",
-    "rolldown": "1.0.0-rc.5",
+    "rolldown": "1.0.0-rc.6",
     "rollup": "^4.59.0",
-    "tsdown": "^0.20.3",
+    "tsdown": "^0.21.0-beta.2",
+    "tsdown-preset-sxzz": "^0.4.0",
     "typescript": "^5.9.3",
     "vite": "^7.3.1",
     "vitest": "^4.0.18",
-    "webpack": "^5.105.2"
+    "webpack": "^5.105.3"
   },
   "prettier": "@sxzz/prettier-config"
 }
