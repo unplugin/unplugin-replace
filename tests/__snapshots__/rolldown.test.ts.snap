@@ -2,14 +2,13 @@
 
 exports[`rolldown 1`] = `
 "import "node:process";
-
 //#region tests/fixtures/main.js
 const platform = "darwin";
 console.log("hello \\"darwin\\"", platform);
 console.log(DEV);
 /** COMMENT_FLAG */
 function x() {}
-
 //#endregion
-export { platform, x };"
+export { platform, x };
+"
 `;

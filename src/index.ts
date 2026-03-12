@@ -6,7 +6,11 @@
 import jsTokens from 'js-tokens'
 import { withMagicString } from 'rolldown-string'
 import { createUnplugin, type UnpluginInstance } from 'unplugin'
-import { resolveOptions, type Options, type ReplaceItem } from './core/options'
+import {
+  resolveOptions,
+  type Options,
+  type ReplaceItem,
+} from './core/options.ts'
 
 export type { Options }
 

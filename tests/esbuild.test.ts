@@ -1,11 +1,11 @@
 import path from 'node:path'
 import { build } from 'esbuild'
 import { expect, test } from 'vitest'
-import UnpluginReplace from '../src/esbuild'
+import UnpluginReplace from '../src/esbuild.ts'
 
 test('esbuild', async () => {
   const { outputFiles } = await build({
-    entryPoints: [path.resolve(__dirname, 'fixtures/main.js')],
+    entryPoints: [path.resolve(import.meta.dirname, 'fixtures/main.js')],
     format: 'esm',
     write: false,
     bundle: true,

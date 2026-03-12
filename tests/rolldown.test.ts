@@ -1,11 +1,11 @@
 import path from 'node:path'
 import { rolldown } from 'rolldown'
 import { expect, test } from 'vitest'
-import UnpluginReplace from '../src/rolldown'
+import UnpluginReplace from '../src/rolldown.ts'
 
 test('rolldown', async () => {
   const build = await rolldown({
-    input: path.resolve(__dirname, 'fixtures/main.js'),
+    input: path.resolve(import.meta.dirname, 'fixtures/main.js'),
     external: ['node:process'],
     plugins: [
       UnpluginReplace({

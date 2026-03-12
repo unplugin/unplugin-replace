@@ -1,11 +1,11 @@
 import path from 'node:path'
 import { build } from 'vite'
 import { expect, test } from 'vitest'
-import UnpluginReplace from '../src/vite'
-import type { RollupOutput } from 'rollup'
+import UnpluginReplace from '../src/vite.ts'
+import type { RolldownOutput } from 'rolldown'
 
 test('vite', async () => {
-  const root = path.resolve(__dirname, 'fixtures')
+  const root = path.resolve(import.meta.dirname, 'fixtures')
   const { output } = (await build({
     root,
     build: {
@@ -23,7 +23,7 @@ test('vite', async () => {
         'process.platform': '"darwin"',
       }),
     ],
-  })) as RollupOutput
+  })) as RolldownOutput
   expect(output[0].code).toMatchSnapshot()
   expect(output[0].code).not.contains('process.platform')
   expect(output[0].code).contains('"darwin"')

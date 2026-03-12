@@ -1,12 +1,12 @@
 import path from 'node:path'
 import { rollupBuild } from '@sxzz/test-utils'
 import { describe, expect, test } from 'vitest'
-import UnpluginReplace from '../src/rollup'
+import UnpluginReplace from '../src/rollup.ts'
 
 describe('rollup', () => {
   test('find string', async () => {
     const { snapshot } = await rollupBuild(
-      path.resolve(__dirname, 'fixtures/main.js'),
+      path.resolve(import.meta.dirname, 'fixtures/main.js'),
       [
         UnpluginReplace({
           'process.platform': '"darwin"',
@@ -22,7 +22,7 @@ describe('rollup', () => {
 
   test('find regexp', async () => {
     const { snapshot } = await rollupBuild(
-      path.resolve(__dirname, 'fixtures/main.js'),
+      path.resolve(import.meta.dirname, 'fixtures/main.js'),
       [
         UnpluginReplace({
           values: [

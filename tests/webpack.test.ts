@@ -3,7 +3,7 @@ import os from 'node:os'
 import path from 'node:path'
 import { expect, onTestFinished, test } from 'vitest'
 import webpack from 'webpack'
-import UnpluginReplace from '../src/webpack'
+import UnpluginReplace from '../src/webpack.ts'
 
 test('webpack', async () => {
   const tmp = await mkdtemp(path.join(os.tmpdir(), 'unplugin-replace-'))
@@ -11,7 +11,7 @@ test('webpack', async () => {
 
   await new Promise<webpack.Stats>((resolve, reject) => {
     const compiler = webpack({
-      entry: path.resolve(__dirname, 'fixtures/main.js'),
+      entry: path.resolve(import.meta.dirname, 'fixtures/main.js'),
       output: {
         path: tmp,
       },
