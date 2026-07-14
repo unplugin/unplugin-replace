@@ -2,7 +2,7 @@
   "name": "unplugin-replace",
   "type": "module",
   "version": "0.9.0",
-  "packageManager": "pnpm@11.11.0",
+  "packageManager": "pnpm@11.13.0",
   "description": "A universal bundler plugin which replaces targeted strings in files.",
   "author": "Kevin Deng <sxzz@sxzz.moe>",
   "license": "MIT",
