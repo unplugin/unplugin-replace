@@ -63,7 +63,7 @@
     "@sxzz/test-utils": "^0.5.18",
     "@types/node": "^25.6.0",
     "@typescript/native-preview": "7.0.0-dev.20260707.2",
-    "bumpp": "^11.0.1",
+    "bumpp": "^12.0.0",
     "esbuild": "^0.28.0",
     "eslint": "^10.3.0",
     "prettier": "^3.8.3",
