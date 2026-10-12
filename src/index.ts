@@ -105,7 +105,7 @@ const plugin: UnpluginInstance<Options | undefined, false> = createUnplugin<
     vite: {
       configResolved(config) {
         options.sourceMap =
-          config.command === 'build' ? !!config.build.sourcemap : true
+          config.command !== 'build' || !!config.build.sourcemap
       },
     },
   }
@@ -148,7 +148,7 @@ function longest(a: string, b: string) {
 }
 
 const objKeyRegEx =
-  /^([$A-Z_\u00A0-\uFFFF][\w$\u00A0-\uFFFF]*)(\.([$A-Z_\u00A0-\uFFFF][\w$\u00A0-\uFFFF]*))+$/i
+  /^([$A-Z_\u{A0}-\u{10FFFF}][\w$\u{A0}-\u{10FFFF}]*)(\.([$A-Z_\u{A0}-\u{10FFFF}][\w$\u{A0}-\u{10FFFF}]*))+$/iu
 function expandTypeofReplacements(values: ReplaceItem<string>[]) {
   values.forEach(({ find }) => {
     const objMatch = find.match(objKeyRegEx)

@@ -1,8 +1,7 @@
 import type { FilterPattern } from 'unplugin'
 
 export type Replacement =
-  | string
-  | ((id: string, match: RegExpExecArray) => string)
+  string | ((id: string, match: RegExpExecArray) => string)
 export type ReplaceItem<F = string | RegExp> = {
   find: F
   replacement: Replacement

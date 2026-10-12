@@ -2,13 +2,6 @@
   "name": "unplugin-replace",
   "type": "module",
   "version": "0.9.0",
-  "devEngines": {
-    "packageManager": {
-      "name": "pnpm",
-      "version": "12.11.2",
-      "onFail": "download"
-    }
-  },
   "description": "A universal bundler plugin which replaces targeted strings in files.",
   "author": "Kevin Deng <sxzz@sxzz.moe>",
   "license": "MIT",
@@ -49,9 +42,17 @@
   "engines": {
     "node": "^22.18.0 || >=24.0.0"
   },
+  "devEngines": {
+    "packageManager": {
+      "name": "pnpm",
+      "version": "12.11.2",
+      "onFail": "download"
+    }
+  },
   "scripts": {
     "lint": "eslint --cache .",
     "lint:fix": "pnpm run lint --fix",
+    "format": "prettier --write .",
     "build": "tsdown",
     "dev": "tsdown --watch",
     "test": "vitest",
