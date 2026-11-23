@@ -43,4 +43,32 @@ describe('rollup', () => {
     expect(snapshot).contains('console.info(dEV)')
     expect(snapshot).contains(`console.info('hello null', platform)`)
   })
+
+  test('find regexp with special replacement patterns', async () => {
+    const { snapshot } = await rollupBuild(
+      path.resolve(import.meta.dirname, 'fixtures/main.js'),
+      [
+        UnpluginReplace({
+          values: [
+            {
+              find: /process\.(\w+)/g,
+              replacement: 'globalThis.$1.$&.$$',
+            },
+            { find: /(?<flag>DEV)/, replacement: '__$<flag>__' },
+          ],
+        }),
+      ],
+    )
+    expect(snapshot).contains('globalThis.platform.process.platform.$')
+    expect(snapshot).not.contains('$1')
+    expect(snapshot).contains('__DEV__')
+  })
+
+  test("find regexp with $' keeps comments", async () => {
+    const { snapshot } = await rollupBuild(
+      path.resolve(import.meta.dirname, 'fixtures/main.js'),
+      [UnpluginReplace({ values: [{ find: /\bDEV\b/, replacement: "`$'`" }] })],
+    )
+    expect(snapshot).contains('`)\n\n/** COMMENT_FLAG */')
+  })
 })

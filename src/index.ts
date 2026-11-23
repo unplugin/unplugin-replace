@@ -64,11 +64,12 @@ const plugin: UnpluginInstance<Options | undefined, false> = createUnplugin<
       handler: withMagicString(function (s, id) {
         if (!values.length) return
 
+        const source = s.toString()
         let code = ''
         if (includeComments) {
-          code = s.toString()
+          code = source
         } else {
-          const tokens = jsTokens(s.toString(), { jsx: /\.[jt]sx?$/.test(id) })
+          const tokens = jsTokens(source, { jsx: /\.[jt]sx?$/.test(id) })
           for (const token of tokens) {
             if (
               token.type === 'MultiLineComment' ||
@@ -93,7 +94,10 @@ const plugin: UnpluginInstance<Options | undefined, false> = createUnplugin<
                 ? stringValues.find(({ find }) => find === match![1])!
                     .replacement
                 : replacement
-            const result = String(ensureFunction(finalReplacement)(id, match))
+            const result =
+              find !== pattern && typeof replacement === 'string'
+                ? expandReplacement(replacement, match, source)
+                : String(ensureFunction(finalReplacement)(id, match))
             s.overwrite(start, end, result)
 
             if (!find.global) break
@@ -130,6 +134,37 @@ const plugin: UnpluginInstance<Options | undefined, false> = createUnplugin<
   }
 })
 export default plugin
+
+// GetSubstitution patterns of String.prototype.replace:
+// https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/replace#specifying_a_string_as_the_replacement
+// `$`` and `$'` read `source`, since `match.input` has comments blanked out.
+function expandReplacement(
+  replacement: string,
+  match: RegExpExecArray,
+  source: string,
+): string {
+  return replacement.replaceAll(
+    /\$([$&`']|\d{1,2}|<([^>]*)>)/g,
+    (all, token: string, name: string | undefined) => {
+      if (token === '$') return '$'
+      if (token === '&') return match[0]
+      if (token === '`') return source.slice(0, match.index)
+      if (token === "'") return source.slice(match.index + match[0].length)
+      if (token[0] === '<') {
+        if (match.groups === undefined) return all
+        return match.groups[name!] ?? ''
+      }
+      const groupCount = match.length - 1
+      const n = Number(token)
+      if (n >= 1 && n <= groupCount) return match[n] ?? ''
+      if (token.length === 2) {
+        const d = Number(token[0])
+        if (d >= 1 && d <= groupCount) return (match[d] ?? '') + token[1]
+      }
+      return all
+    },
+  )
+}
 
 function escape(str: string) {
   // eslint-disable-next-line unicorn/prefer-string-replace-all
